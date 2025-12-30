@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="input.html" onsubmit="return validate()">
+       <label>Name:</label>
+       <input type="text" id="name"><br>
+       <span id="txt1" style="color:red"></span><br>
+       <label>Password:</label>
+       <input type="password" id="pass"><br>
+       <span id="txt2" style="color: red"></span><br>
+       <label>Email:</label>
+       <input type="email" id="email"><br>
+       <span id="txt3" style="color: red"></span><br>
+       <label>Mobile:</label>
+       <input type="text" id="mobile"><br>
+       <span id="txt4" style="color: red"></span><br>
+       <input type="submit">
+    </form>
+    <script>
+        function validate(){
+           var username=document.getElementById('name')
+           var password=document.getElementById('pass')
+           var email=document.getElementById('email')
+           var mobile=document.getElementById('mobile')
+           var unameErr=document.getElementById('txt1')
+           var passErr=document.getElementById('txt2')
+           var emailErr=document.getElementById('txt3')
+           var mobileErr=document.getElementById('txt4')
+           var regx=/B21/i;
+           var regx2=/^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,20})$/;
+           var regx3=/[6-9]\d{9}$/;
+           unameErr.textContent="";
+           passErr.textContent="";
+           mobileErr.textContent="";
+           if(username.value.trim()==""){
+              username.style.border="solid 2px red"
+              unameErr.textContent="please enter username"
+              return false;
+           }
+           else if(password.value.trim()==""){
+            password.style.border="solid 2px red"
+            passErr.textContent="Please enter password"
+             return false;
+           }
+           else if(password.value.trim().length<5){
+            password.style.border="solid 2px red"
+            passErr.textContent="password length is too short"
+             return false;
+           }
+           else if(!regx.test(password.value)){
+            password.style.border="solid 2px red"
+            passErr.textContent="Invalid password,password must contain institute domain"
+             return false;
+           }
+           else if(email.value.trim()==""){
+              email.style.border="solid 2px red"
+              emailErr.textContent="please enter emailid"
+              return false;
+           }
+           else if(!regx2.test(email.value)){
+            email.style.border="solid 2px red"
+            emailErr.textContent="Invalid emailid"
+             return false;
+           }
+           else if(mobile.value.trim()==""){
+            mobile.style.border="solid 2px red"
+            mobileErr.textContent="mobile number should not be empty"
+             return false;
+           }
+           else if(!regx3.test(mobile.value)){
+            mobile.style.border="solid 2px red"
+            mobileErr.textContent="Invalid mobile number"
+            return false;
+           }
+            else if(mobile.value.trim().length>10){
+            mobile.style.border="solid 2px red"
+            mobileErr.textContent="Invalid mobile number"
+             return false;
+           }
+           else{
+            return true;
+           }
+           e.preventDefault();
+        }
+    </script>
+</body>
+</html>
